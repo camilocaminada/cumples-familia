@@ -1,0 +1,1266 @@
+<!DOCTYPE html> <html lang="es"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="theme-color" content="#2563eb"> <title>Cumpleaños de la familia 🎂</title> <style> :root { --blue: #2563eb; --blue-dark: #1d4ed8; --blue-light: #eff6ff;
+
+  --green: #059669;
+  --green-light: #ecfdf5;
+
+  --background: #f5f7fa;
+  --card: #ffffff;
+  --text: #172033;
+  --text-secondary: #64748b;
+  --border: #e2e8f0;
+
+  --radius: 16px;
+  --shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Helvetica,
+    Arial,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  width: min(720px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 48px;
+}
+
+/* =========================
+   ENCABEZADO
+   ========================= */
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.header-icon {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  font-size: 30px;
+  box-shadow: var(--shadow);
+}
+
+h1 {
+  margin: 0;
+  font-size: 27px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  margin: 7px 0 0;
+  color: var(--text-secondary);
+  font-size: 15px;
+}
+
+/* =========================
+   TARJETA PRÓXIMO CUMPLEAÑOS
+   ========================= */
+
+.next-card {
+  position: relative;
+  overflow: hidden;
+
+  background: linear-gradient(
+    135deg,
+    var(--blue),
+    var(--blue-dark)
+  );
+
+  color: white;
+  border-radius: var(--radius);
+  padding: 22px;
+
+  box-shadow:
+    0 8px 24px rgba(37, 99, 235, 0.20);
+
+  margin-bottom: 30px;
+}
+
+.next-card::after {
+  content: "🎂";
+
+  position: absolute;
+  right: 18px;
+  bottom: -10px;
+
+  font-size: 76px;
+  opacity: 0.12;
+
+  transform: rotate(-8deg);
+
+  pointer-events: none;
+}
+
+.next-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+  margin-bottom: 6px;
+}
+
+.next-name {
+  font-size: 26px;
+  line-height: 1.2;
+  font-weight: 750;
+  margin-bottom: 5px;
+}
+
+.next-date {
+  font-size: 15px;
+  opacity: 0.9;
+}
+
+.countdown {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 14px;
+  padding: 7px 11px;
+
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.20);
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 650;
+}
+
+/* =========================
+   CUMPLEAÑOS HOY
+   ========================= */
+
+.next-card.is-today {
+  background:
+    linear-gradient(
+      135deg,
+      #059669 0%,
+      #047857 55%,
+      #065f46 100%
+    );
+
+  box-shadow:
+    0 10px 28px rgba(5, 150, 105, 0.25);
+}
+
+.next-card.is-today::after {
+  content: "🎉";
+
+  font-size: 86px;
+  right: 15px;
+  bottom: -13px;
+
+  opacity: 0.16;
+
+  transform: rotate(-5deg);
+}
+
+.today-message {
+  display: none;
+
+  font-size: 15px;
+  margin-top: 2px;
+
+  opacity: 0.95;
+}
+
+.next-card.is-today .today-message {
+  display: block;
+}
+
+.next-card.is-today .countdown {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.28);
+
+  font-size: 14px;
+}
+
+/* =========================
+   RESUMEN
+   ========================= */
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: 14px;
+
+  padding: 15px;
+
+  box-shadow: var(--shadow);
+}
+
+.summary-number {
+  font-size: 23px;
+  font-weight: 750;
+
+  line-height: 1;
+
+  margin-bottom: 5px;
+}
+
+.summary-label {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* =========================
+   CALENDARIO
+   ========================= */
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin: 0 2px 12px;
+
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.month-section {
+  margin-bottom: 24px;
+}
+
+.month-title {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin: 0 0 9px;
+  padding-left: 3px;
+
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.month-title small {
+  color: var(--text-secondary);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  margin-left: 2px;
+}
+
+.month-current {
+  color: var(--blue);
+}
+
+.month-icon {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: white;
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  font-size: 16px;
+}
+
+/* =========================
+   LISTA DE CUMPLEAÑOS
+   ========================= */
+
+.birthday-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.birthday {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  background: var(--card);
+
+  border: 1px solid var(--border);
+  border-radius: 12px;
+
+  padding: 13px 14px;
+
+  box-shadow:
+    0 2px 7px rgba(15, 23, 42, 0.035);
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.birthday-info {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.date-box {
+  flex-shrink: 0;
+
+  width: 44px;
+  height: 44px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background: #f8fafc;
+
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.date-day {
+  font-size: 16px;
+  font-weight: 750;
+
+  line-height: 1;
+}
+
+.date-month {
+  font-size: 9px;
+
+  text-transform: uppercase;
+
+  color: var(--text-secondary);
+
+  margin-top: 3px;
+
+  font-weight: 700;
+}
+
+.person-name {
+  font-size: 15px;
+  font-weight: 650;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================
+   INFORMACIÓN DE DÍAS
+   ========================= */
+
+.birthday-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+  gap: 3px;
+
+  flex-shrink: 0;
+}
+
+.days-left {
+  color: var(--text-secondary);
+
+  font-size: 11px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.next-badge {
+  background: var(--blue-light);
+  color: var(--blue);
+
+  border-radius: 999px;
+
+  padding: 5px 9px;
+
+  font-size: 11px;
+  font-weight: 750;
+
+  white-space: nowrap;
+}
+
+.today-badge {
+  background: var(--green-light);
+  color: var(--green);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+.footer {
+  text-align: center;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+  line-height: 1.5;
+
+  margin-top: 34px;
+}
+
+/* =========================
+   DESKTOP
+   ========================= */
+
+@media (min-width: 600px) {
+
+  .container {
+    padding-top: 42px;
+  }
+
+  .birthday:hover {
+    transform: translateY(-1px);
+
+    box-shadow:
+      0 5px 14px rgba(15, 23, 42, 0.07);
+  }
+
+}
+
+/* =========================
+   CELULARES PEQUEÑOS
+   ========================= */
+
+@media (max-width: 380px) {
+
+  .container {
+    width: min(
+      100% - 22px,
+      720px
+    );
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .next-card {
+    padding: 19px;
+  }
+
+  .next-name {
+    font-size: 23px;
+  }
+
+  .next-badge {
+    display: none;
+  }
+
+  .days-left {
+    font-size: 10px;
+  }
+
+}
+
+</style> </head> <body> <main class="container">
+
+<!-- =========================
+     ENCABEZADO
+     ========================= -->
+
+<header class="header">
+
+  <div class="header-icon">
+    🎂
+  </div>
+
+  <h1>
+    Cumpleaños de la Familia
+  </h1>
+
+  <p class="subtitle">
+    Para que no se nos pase ninguno 🎉
+  </p>
+
+</header>
+
+<!-- =========================
+     PRÓXIMO CUMPLEAÑOS
+     ========================= -->
+
+<section
+  class="next-card"
+  id="nextCard"
+>
+
+  <div
+    class="next-label"
+    id="nextLabel"
+  >
+    Próximo cumpleaños
+  </div>
+
+  <div
+    class="next-name"
+    id="nextName"
+  >
+    —
+  </div>
+
+  <div
+    class="next-date"
+    id="nextDate"
+  >
+    —
+  </div>
+
+  <div class="today-message">
+    ¡Hoy es su día! 🥳
+  </div>
+
+  <div
+    class="countdown"
+    id="countdown"
+  >
+    —
+  </div>
+
+</section>
+
+<!-- =========================
+     RESUMEN
+     ========================= -->
+
+<section class="summary">
+
+  <div class="summary-card">
+
+    <div
+      class="summary-number"
+      id="totalPeople"
+    >
+      0
+    </div>
+
+    <div class="summary-label">
+      Personas
+    </div>
+
+  </div>
+
+  <div class="summary-card">
+
+    <div
+      class="summary-number"
+      id="totalMonths"
+    >
+      0
+    </div>
+
+    <div class="summary-label">
+      Meses con cumpleaños
+    </div>
+
+  </div>
+
+</section>
+
+<!-- =========================
+     CALENDARIO
+     ========================= -->
+
+<section>
+
+  <div class="section-title">
+    <span>Calendario</span>
+    <span>📅</span>
+  </div>
+
+  <div id="birthdayList"></div>
+
+</section>
+
+<footer class="footer">
+  La información se actualiza automáticamente
+  según la fecha actual.
+</footer>
+
+</main> <script>
+
+/*
+ * ==========================================================
+ * CUMPLEAÑOS
+ *
+ * Para agregar una persona:
+ *
+ * { name: "Nombre", day: 15, month: 7 }
+ *
+ * month:
+ * 1  = Enero
+ * 2  = Febrero
+ * ...
+ * 12 = Diciembre
+ * ==========================================================
+ */
+
+const birthdays = [
+  { name: "Abuela",   day: 8, month: 5  },
+  { name: "Camilo",   day: 18, month: 5  },
+  { name: "Natalia",  day: 21, month: 5  },
+  { name: "Lucía Caminada",  day: 11, month: 6  },
+  { name: "Denise",  day: 14, month: 6  },
+  { name: "Federico",  day: 15, month: 7 },
+  { name: "Juan Carlos",  day: 31, month: 7 },
+  { name: "Gonzalo",  day: 12, month: 8 },
+  { name: "Lucía Rocha",  day: 19, month: 8 },
+  { name: "María Laura",  day: 13, month: 9 },
+  { name: "Matías",   day: 22, month: 10 },
+  { name: "Roberto",  day: 29, month: 11 },
+  { name: "Bruno",  day: 5, month: 12 },
+  { name: "Anaydée",  day: 10, month: 12 },
+];
+
+/*
+ * ==========================================================
+ * MESES
+ *
+ * Emojis pensados para Uruguay /
+ * hemisferio sur.
+ * ==========================================================
+ */
+
+const months = [
+
+  "Enero",
+  "Febrero",
+  "Marzo",
+  "Abril",
+  "Mayo",
+  "Junio",
+  "Julio",
+  "Agosto",
+  "Setiembre",
+  "Octubre",
+  "Noviembre",
+  "Diciembre"
+
+];
+
+const monthShort = [
+
+  "ENE",
+  "FEB",
+  "MAR",
+  "ABR",
+  "MAY",
+  "JUN",
+  "JUL",
+  "AGO",
+  "SET",
+  "OCT",
+  "NOV",
+  "DIC"
+
+];
+
+const monthIcons = [
+
+  "☀️",
+  "🌞",
+  "🍂",
+  "🍁",
+  "🧣",
+  "🧥",
+  "❄️",
+  "☕",
+  "🌱",
+  "🎃",
+  "🌼",
+  "🎄"
+
+];
+
+/*
+ * ==========================================================
+ * FECHA ACTUAL
+ * ==========================================================
+ */
+
+const today =
+  new Date();
+
+today.setHours(
+  0,
+  0,
+  0,
+  0
+);
+
+/*
+ * ==========================================================
+ * PRÓXIMO CUMPLEAÑOS DE UNA PERSONA
+ * ==========================================================
+ */
+
+function getNextBirthdayDate(
+  person
+) {
+
+  let year =
+    today.getFullYear();
+
+  let date =
+    new Date(
+      year,
+      person.month - 1,
+      person.day
+    );
+
+  date.setHours(
+    0,
+    0,
+    0,
+    0
+  );
+
+  /*
+   * Si ya pasó este año,
+   * buscamos el año siguiente.
+   */
+
+  if (date < today) {
+
+    date =
+      new Date(
+        year + 1,
+        person.month - 1,
+        person.day
+      );
+
+    date.setHours(
+      0,
+      0,
+      0,
+      0
+    );
+
+  }
+
+  return date;
+
+}
+
+/*
+ * ==========================================================
+ * CANTIDAD DE DÍAS ENTRE DOS FECHAS
+ * ==========================================================
+ */
+
+function daysBetween(
+  date1,
+  date2
+) {
+
+  const milliseconds =
+    date2.getTime() -
+    date1.getTime();
+
+  return Math.round(
+    milliseconds /
+    (1000 * 60 * 60 * 24)
+  );
+
+}
+
+/*
+ * ==========================================================
+ * PREPARAR CUMPLEAÑOS
+ * ==========================================================
+ */
+
+const upcoming =
+  birthdays
+
+    .map(person => ({
+
+      ...person,
+
+      nextDate:
+        getNextBirthdayDate(
+          person
+        )
+
+    }))
+
+    .sort(
+      (a, b) =>
+        a.nextDate -
+        b.nextDate
+    );
+
+const nextBirthday =
+  upcoming[0];
+
+const daysLeft =
+  daysBetween(
+    today,
+    nextBirthday.nextDate
+  );
+
+const isToday =
+  daysLeft === 0;
+
+/*
+ * ==========================================================
+ * TARJETA SUPERIOR
+ * ==========================================================
+ */
+
+const nextCard =
+  document.getElementById(
+    "nextCard"
+  );
+
+document.getElementById(
+  "nextName"
+).textContent =
+  nextBirthday.name;
+
+document.getElementById(
+  "nextDate"
+).textContent =
+  `${nextBirthday.day} de ${
+    months[
+      nextBirthday.month - 1
+    ]
+  }`;
+
+const countdown =
+  document.getElementById(
+    "countdown"
+  );
+
+if (isToday) {
+
+  nextCard.classList.add(
+    "is-today"
+  );
+
+  document.getElementById(
+    "nextLabel"
+  ).textContent =
+    "🎉 Cumpleaños de hoy";
+
+  countdown.textContent =
+    "🥳 ¡A festejar!";
+
+} else {
+
+  if (daysLeft === 1) {
+
+    countdown.textContent =
+      "⏳ Falta 1 día";
+
+  } else {
+
+    countdown.textContent =
+      `⏳ Faltan ${daysLeft} días`;
+
+  }
+
+}
+
+/*
+ * ==========================================================
+ * RESUMEN
+ * ==========================================================
+ */
+
+const monthsWithBirthdays =
+  new Set(
+    birthdays.map(
+      person =>
+        person.month
+    )
+  ).size;
+
+document.getElementById(
+  "totalPeople"
+).textContent =
+  birthdays.length;
+
+document.getElementById(
+  "totalMonths"
+).textContent =
+  monthsWithBirthdays;
+
+/*
+ * ==========================================================
+ * MES ACTUAL
+ * ==========================================================
+ */
+
+const currentMonth =
+  today.getMonth() + 1;
+
+/*
+ * ==========================================================
+ * ORDEN CIRCULAR
+ *
+ * Ejemplo en octubre:
+ *
+ * Octubre
+ * Noviembre
+ * Diciembre
+ * Enero
+ * Febrero
+ * ...
+ * Septiembre
+ * ==========================================================
+ */
+
+const sortedBirthdays =
+  [...birthdays].sort(
+    (a, b) => {
+
+      const relativeA =
+        (
+          a.month -
+          currentMonth +
+          12
+        ) % 12;
+
+      const relativeB =
+        (
+          b.month -
+          currentMonth +
+          12
+        ) % 12;
+
+      if (
+        relativeA !==
+        relativeB
+      ) {
+
+        return (
+          relativeA -
+          relativeB
+        );
+
+      }
+
+      return (
+        a.day -
+        b.day
+      );
+
+    }
+  );
+
+/*
+ * ==========================================================
+ * GENERAR CALENDARIO
+ * ==========================================================
+ */
+
+const birthdayList =
+  document.getElementById(
+    "birthdayList"
+  );
+
+let currentDisplayedMonth =
+  null;
+
+sortedBirthdays.forEach(
+  person => {
+
+    /*
+     * Crear sección del mes.
+     */
+
+    if (
+      person.month !==
+      currentDisplayedMonth
+    ) {
+
+      currentDisplayedMonth =
+        person.month;
+
+      const monthSection =
+        document.createElement(
+          "section"
+        );
+
+      monthSection.className =
+        "month-section";
+
+      const isCurrentMonth =
+        person.month ===
+        currentMonth;
+
+      monthSection.innerHTML = `
+
+        <h2 class="month-title ${
+          isCurrentMonth
+            ? "month-current"
+            : ""
+        }">
+
+          <span class="month-icon">
+            ${
+              monthIcons[
+                currentDisplayedMonth - 1
+              ]
+            }
+          </span>
+
+          ${
+            months[
+              currentDisplayedMonth - 1
+            ]
+          }
+
+          ${
+            isCurrentMonth
+              ? "<small>(mes actual)</small>"
+              : ""
+          }
+
+        </h2>
+
+        <div class="birthday-list"></div>
+
+      `;
+
+      birthdayList.appendChild(
+        monthSection
+      );
+
+    }
+
+    /*
+     * Obtener lista del mes.
+     */
+
+    const monthSection =
+      birthdayList.lastElementChild;
+
+    const list =
+      monthSection.querySelector(
+        ".birthday-list"
+      );
+
+    /*
+     * Próximo cumpleaños.
+     */
+
+    const isNext =
+      person.name ===
+        nextBirthday.name &&
+
+      person.day ===
+        nextBirthday.day &&
+
+      person.month ===
+        nextBirthday.month;
+
+    /*
+     * Calcular cuántos días
+     * faltan para ESTA persona.
+     */
+
+    const personNextDate =
+      getNextBirthdayDate(
+        person
+      );
+
+    const personDaysLeft =
+      daysBetween(
+        today,
+        personNextDate
+      );
+
+    const personIsToday =
+      personDaysLeft === 0;
+
+    /*
+     * Texto de días.
+     */
+
+    let daysText = "";
+
+    if (personIsToday) {
+
+      daysText =
+        "🎉 ¡Es hoy!";
+
+    } else if (
+      personDaysLeft === 1
+    ) {
+
+      daysText =
+        "Falta 1 día";
+
+    } else {
+
+      daysText =
+        `Faltan ${personDaysLeft} días`;
+
+    }
+
+    /*
+     * Badge especial.
+     */
+
+    let badge = "";
+
+    if (personIsToday) {
+
+      badge = `
+
+        <span class="next-badge today-badge">
+          🎉 ¡Hoy!
+        </span>
+
+      `;
+
+    } else if (isNext) {
+
+      badge = `
+
+        <span class="next-badge">
+          Próximo
+        </span>
+
+      `;
+
+    }
+
+    /*
+     * Crear fila.
+     */
+
+    const row =
+      document.createElement(
+        "div"
+      );
+
+    row.className =
+      "birthday";
+
+    row.innerHTML = `
+
+      <div class="birthday-info">
+
+        <div class="date-box">
+
+          <div class="date-day">
+            ${
+              String(
+                person.day
+              ).padStart(
+                2,
+                "0"
+              )
+            }
+          </div>
+
+          <div class="date-month">
+            ${
+              monthShort[
+                person.month - 1
+              ]
+            }
+          </div>
+
+        </div>
+
+        <div class="person-name">
+          ${escapeHtml(
+            person.name
+          )}
+        </div>
+
+      </div>
+
+      <div class="birthday-meta">
+
+        ${badge}
+
+        <span class="days-left">
+          ${daysText}
+        </span>
+
+      </div>
+
+    `;
+
+    list.appendChild(
+      row
+    );
+
+  }
+);
+
+/*
+ * ==========================================================
+ * SEGURIDAD PARA LOS NOMBRES
+ * ==========================================================
+ */
+
+function escapeHtml(
+  text
+) {
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+  div.textContent =
+    text;
+
+  return div.innerHTML;
+
+}
+
+</script> </body> </html> 
